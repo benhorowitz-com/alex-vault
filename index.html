@@ -1,0 +1,271 @@
+<!--
+  ═════════════════════════════════════════════════════
+  🕵️  AGENT HQ — SECRET VAULT
+  ═════════════════════════════════════════════════════
+  This WHOLE website lives in this one file.
+  Scroll down to the bottom to find your missions!
+  Look for the 🎯 marks.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 👇 CHANGE THIS to your own name -->
+  <title>Agent Alex's Secret Vault</title>
+
+  <style>
+    /* ── the whole page ─────────────────────────── */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      box-sizing: border-box;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      background: #0d1b2a;
+      color: #e0e1dd;
+      font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 { margin: 0; font-size: 34px; }
+    .subtitle { margin: 0; opacity: 0.7; }
+
+    /* ── the vault: a treasure room with a door on top ── */
+    .vault {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      perspective: 1000px;
+      margin: 10px 0;
+    }
+
+    .treasure-room {
+      position: absolute;
+      inset: 0;
+      box-sizing: border-box;
+      border: 6px solid #55606d;
+      border-radius: 18px;
+      background: radial-gradient(circle, #4a3a10, #14100a);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .treasure { font-size: 90px; }
+
+    .vault-door {
+      position: absolute;
+      inset: 0;
+      box-sizing: border-box;
+      border: 6px solid #2b2d42;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #8d99ae, #55606d);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* the door swings on its LEFT edge, like a real hinge */
+      transform-origin: left center;
+      transition: transform 1.6s ease-in-out;
+    }
+
+    /* when the door gets the "open" tag, it swings! */
+    .vault-door.open { transform: rotateY(-110deg); }
+
+    /* the spinny wheel on the front of the door */
+    .vault-wheel {
+      width: 110px;
+      height: 110px;
+      border: 12px solid #2b2d42;
+      border-radius: 50%;
+      position: relative;
+    }
+    .vault-wheel::before, .vault-wheel::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: #2b2d42;
+    }
+    .vault-wheel::before { width: 106px; height: 12px; transform: translate(-50%, -50%); }
+    .vault-wheel::after  { width: 12px; height: 106px; transform: translate(-50%, -50%); }
+
+    /* the door wobbles when the code is wrong */
+    .vault-door.shake { animation: shake 0.4s; }
+    @keyframes shake {
+      0%, 100% { translate: 0; }
+      25%      { translate: -10px; }
+      75%      { translate: 10px; }
+    }
+
+    /* ── the code box and button ─────────────────── */
+    input {
+      padding: 12px 16px;
+      font-size: 18px;
+      font-family: inherit;
+      text-align: center;
+      color: #e0e1dd;
+      background: #1b263b;
+      border: 2px solid #55606d;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 18px;
+      font-family: inherit;
+      font-weight: bold;
+      color: #2b2d42;
+      background: #e9c46a;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover { background: #f4a261; }
+
+    .message { min-height: 28px; margin: 0; font-size: 20px; }
+
+    /* ── the sticky note somebody left behind… ───── */
+    .sticky-note {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 110px;
+      min-height: 95px;
+      padding: 10px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffe66d;
+      color: #333;
+      font-size: 15px;
+      rotate: -6deg;
+      box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+
+    /* ── confetti!!! ─────────────────────────────── */
+    .confetti {
+      position: fixed;
+      top: -40px;
+      font-size: 26px;
+      pointer-events: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    footer { margin-top: auto; padding-top: 20px; font-size: 14px; opacity: 0.6; }
+  </style>
+</head>
+<body>
+
+  <h1>🔐 Agent Alex's Secret Vault</h1>
+  <p class="subtitle">Top secret. Agents only.</p>
+
+  <div class="vault">
+    <div class="treasure-room">
+      <div class="treasure" id="treasureSpot"></div>
+      <p>YOU'RE IN! 🎉</p>
+    </div>
+    <div class="vault-door" id="vaultDoor">
+      <div class="vault-wheel"></div>
+    </div>
+  </div>
+
+  <input id="codeInput" type="text" placeholder="enter the secret code…" autocomplete="off">
+  <button id="openButton">OPEN THE VAULT</button>
+  <p class="message" id="message"></p>
+
+  <div class="sticky-note" id="stickyNote">🤫<br>tap me</div>
+
+  <!-- 👇 CHANGE THIS to your own name too -->
+  <footer>Agent HQ · built by Agent Alex</footer>
+
+  <script>
+    // ═══════════════════════════════════════════════
+    // 🎯 MISSION 1: SET YOUR OWN SECRET CODE
+    // The vault opens when someone types this exact code.
+    // 👇 CHANGE THIS from "changeme" to your own secret code!
+    const SECRET_PASSWORD = "changeme";
+    // ═══════════════════════════════════════════════
+
+    // ═══════════════════════════════════════════════
+    // 🎯 MISSION 2: PICK YOUR TREASURE
+    // This is what agents find when the door swings open.
+    // 👇 CHANGE THIS to any emoji you love! 💎 🐉 🍕 🚀
+    const TREASURE = "🎁";
+    // ═══════════════════════════════════════════════
+
+    // grab the pieces of the page we need to control
+    const vaultDoor = document.getElementById("vaultDoor");
+    const treasureSpot = document.getElementById("treasureSpot");
+    const codeInput = document.getElementById("codeInput");
+    const openButton = document.getElementById("openButton");
+    const message = document.getElementById("message");
+    const stickyNote = document.getElementById("stickyNote");
+
+    // put the treasure inside the vault, ready to be found
+    treasureSpot.textContent = TREASURE;
+
+    function tryToOpenTheVault() {
+      const guess = codeInput.value;
+
+      if (guess === SECRET_PASSWORD) {
+        // right code → the door swings open!
+        vaultDoor.classList.add("open");
+        message.textContent = "ACCESS GRANTED, AGENT! 🟢";
+        throwConfetti();
+      } else {
+        // wrong code → the door wobbles and stays shut
+        vaultDoor.classList.add("shake");
+        message.textContent = "ACCESS DENIED ⛔ try again!";
+        setTimeout(function () {
+          vaultDoor.classList.remove("shake");
+        }, 500);
+      }
+    }
+
+    // the button opens the vault…
+    openButton.addEventListener("click", tryToOpenTheVault);
+
+    // …and so does pressing Enter in the code box
+    codeInput.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        tryToOpenTheVault();
+      }
+    });
+
+    // somebody wrote the secret code on a sticky note… oops 😉
+    stickyNote.addEventListener("click", function () {
+      stickyNote.textContent = "the code is: " + SECRET_PASSWORD;
+    });
+
+    // rain 50 pieces of confetti from the top of the screen
+    function throwConfetti() {
+      const confettiShapes = ["🎉", "✨", "⭐", "🎊", "💛"];
+      for (let i = 0; i < 50; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti";
+        piece.textContent = confettiShapes[Math.floor(Math.random() * confettiShapes.length)];
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.animationDuration = 2 + Math.random() * 2 + "s";
+        piece.style.animationDelay = Math.random() * 0.5 + "s";
+        document.body.appendChild(piece);
+        piece.addEventListener("animationend", function () {
+          piece.remove();
+        });
+      }
+    }
+  </script>
+</body>
+</html>
