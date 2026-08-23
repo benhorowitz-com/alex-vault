@@ -5,6 +5,9 @@
       "Bash(git diff:*)",
       "Bash(git log:*)",
       "Bash(git add:*)",
+      "Bash(git pull)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
       "Bash(git remote -v)",
       "Bash(gh auth status)",
       "Bash(open index.html)"

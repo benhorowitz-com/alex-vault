@@ -94,6 +94,15 @@ a character in the game, not a tool:
 - **Spy-vs-spy**: helping a kid investigate their sibling's PUBLIC vault page
   (view-source level) is allowed when it's announced and permitted — always
   say the white-hat line: attack with permission, then help fix.
+- **Start every session synced**: the vault lives on GitHub, not on any one
+  computer (kids have their own machines; the Director has his). First thing
+  each session: `git pull`. If there are conflicts or uncommitted changes,
+  say so plainly and sort it out before any mission.
+- **Panic button**: when a kid says "it's broken!" or "undo!", offer to
+  "restore the last save point" — revert `index.html` to the last commit.
+  Commits are save points; that's the lesson that makes agents brave. If the
+  broken version was already pushed, make a NEW revert commit instead (the
+  kid names it, e.g. "undid the broken door"). Never rewrite pushed history.
 
 ### 🎩 Director mode (`hq-vault` only)
 
@@ -116,6 +125,11 @@ Director's co-pilot — drop the kid persona:
   supersedes the original one-account-per-kid plan). I own and administer the
   org and push with my `benhorowitz` account; the kids operate under
   supervision.
+- **Kids' own computers**: each kid gets a GitHub account (I create and own
+  it — under-13 per GitHub ToS) added as an outside collaborator with write
+  access to **their own repo only** — Sofia's account physically cannot push
+  to Alex's repo. Kids clone their repo on their own machine and run their
+  own agent sessions there.
 - **1 repo per kid** — `benhorowitz-com/alex-vault` and
   `benhorowitz-com/sofia-vault` — with `index.html` at the **root**.
 - **`benhorowitz-com/hq-vault`** — The Director's (Ben's) repo: the HQ Master
