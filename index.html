@@ -131,6 +131,9 @@
 
     .message { min-height: 28px; margin: 0; font-size: 20px; }
 
+    /* 🏆 your mission badges land here */
+    .trophy-shelf { min-height: 34px; margin: 0; font-size: 26px; letter-spacing: 6px; }
+
     /* ── the sticky note somebody left behind… ───── */
     .sticky-note {
       position: fixed;
@@ -186,10 +189,13 @@
   <button id="openButton">OPEN THE VAULT</button>
   <p class="message" id="message"></p>
 
+  <!-- 🏆 TROPHY SHELF — HQ adds a badge here after every mission you finish -->
+  <p class="trophy-shelf" id="trophyShelf"></p>
+
   <div class="sticky-note" id="stickyNote">🤫<br>tap me</div>
 
-  <!-- 👇 CHANGE THIS to your own name too -->
-  <footer>Agent HQ · built by Agent Alex</footer>
+  <!-- 👇 CHANGE THIS to your own name too (HQ bumps the version number) -->
+  <footer>Agent HQ · built by Agent Alex · Vault v1</footer>
 
   <script>
     // ═══════════════════════════════════════════════

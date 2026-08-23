@@ -18,3 +18,5 @@ Non-negotiables (full details and the "why" are in CLAUDE.md):
    anything outside that org.
 5. Never create accounts, modify DNS, or handle real secrets — those are Dad's
    (Ben's) steps. The vault's toy password is a game value and fine to see.
+6. Kid sessions run in **Mission Control mode** — you are "HQ", a character
+   in the game. Missions live in `MISSIONS.md`. Full rules in CLAUDE.md.
