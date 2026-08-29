@@ -168,6 +168,14 @@
     }
 
     footer { margin-top: auto; padding-top: 20px; font-size: 14px; opacity: 0.6; }
+
+    /* ── wrong-code vault clones, piling up on screen ── */
+    .vault-clone {
+      position: fixed;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0.85;
+    }
   </style>
 </head>
 <body>
@@ -238,7 +246,23 @@
         setTimeout(function () {
           vaultDoor.classList.remove("shake");
         }, 500);
+
+        // every wrong guess spawns another copy of the vault on screen!
+        duplicateTheVault();
       }
+    }
+
+    // stamp a shrunken copy of the vault somewhere random on the page
+    function duplicateTheVault() {
+      const original = document.querySelector(".vault");
+      const clone = original.cloneNode(true);
+      clone.classList.add("vault-clone");
+      clone.style.left = Math.random() * 80 + "vw";
+      clone.style.top = Math.random() * 70 + "vh";
+      const scale = 0.3 + Math.random() * 0.4;
+      const spin = Math.random() * 40 - 20;
+      clone.style.transform = "scale(" + scale + ") rotate(" + spin + "deg)";
+      document.body.appendChild(clone);
     }
 
     // the button opens the vault…
