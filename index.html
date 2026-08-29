@@ -261,11 +261,13 @@
           door.classList.add("open");
         });
         message.textContent = "ACCESS GRANTED, AGENT! 🟢";
+        speak("Access granted, Agent!");
         throwConfetti();
       } else {
         // wrong code → the door wobbles and stays shut
         vaultDoor.classList.add("shake");
         message.textContent = "ACCESS DENIED ⛔ try again!";
+        speak("Access denied. Try again!");
         setTimeout(function () {
           vaultDoor.classList.remove("shake");
         }, 500);
@@ -273,6 +275,14 @@
         // every wrong guess spawns another copy of the vault on screen!
         duplicateTheVault();
       }
+    }
+
+    // make the vault talk out loud, using the computer's own robot voice
+    // (built right into the browser — no extra files needed!)
+    function speak(words) {
+      if (!window.speechSynthesis) return; // some old browsers can't talk
+      const utterance = new SpeechSynthesisUtterance(words);
+      window.speechSynthesis.speak(utterance);
     }
 
     // stamp a shrunken copy of the vault somewhere random on the page
