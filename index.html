@@ -171,6 +171,12 @@
       animation-name: fall;
       animation-timing-function: linear;
     }
+
+    /* lift the real page text/buttons ABOVE the falling poop so it never covers them */
+    h1, .subtitle, .vault, input, button, .message, .trophy-shelf, footer {
+      position: relative;
+      z-index: 1;
+    }
     @keyframes fall {
       to { transform: translateY(110vh) rotate(360deg); }
     }
