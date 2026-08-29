@@ -235,8 +235,10 @@
       const guess = codeInput.value;
 
       if (guess === SECRET_PASSWORD) {
-        // right code → the door swings open!
-        vaultDoor.classList.add("open");
+        // right code → the door swings open — and so does every clone door!
+        document.querySelectorAll(".vault-door").forEach(function (door) {
+          door.classList.add("open");
+        });
         message.textContent = "ACCESS GRANTED, AGENT! 🟢";
         throwConfetti();
       } else {
