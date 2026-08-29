@@ -58,7 +58,15 @@
       gap: 6px;
     }
 
-    .treasure { font-size: 90px; }
+    .treasure {
+      font-size: 90px;
+      display: inline-block;
+      animation: cute-bounce 1.2s ease-in-out infinite;
+    }
+    @keyframes cute-bounce {
+      0%, 100% { transform: translateY(0) rotate(-8deg); }
+      50% { transform: translateY(-14px) rotate(8deg); }
+    }
 
     .vault-door {
       position: absolute;
@@ -217,7 +225,7 @@
     // 🎯 MISSION 2: PICK YOUR TREASURE
     // This is what agents find when the door swings open.
     // 👇 CHANGE THIS to any emoji you love! 💎 🐉 🍕 🚀
-    const TREASURE = "💩";
+    const TREASURE = "💩✨";
     // ═══════════════════════════════════════════════
 
     // grab the pieces of the page we need to control
