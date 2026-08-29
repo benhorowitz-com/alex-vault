@@ -244,18 +244,26 @@
     // than a Mac does) — so instead of using the emoji, we drew our OWN cute
     // poop with googly eyes. Now it looks exactly the same everywhere!
     treasureSpot.innerHTML =
-      '<svg viewBox="0 0 200 220" width="110" height="121">' +
-      '<ellipse cx="100" cy="170" rx="80" ry="45" fill="#8B5E3C"/>' +
-      '<ellipse cx="100" cy="130" rx="65" ry="40" fill="#8B5E3C"/>' +
-      '<ellipse cx="100" cy="95" rx="48" ry="35" fill="#8B5E3C"/>' +
-      '<path d="M100 60 C 90 40, 110 30, 100 15 C 95 25, 105 35, 95 45 Z" fill="#8B5E3C"/>' +
-      '<circle cx="78" cy="110" r="14" fill="white"/>' +
-      '<circle cx="122" cy="110" r="14" fill="white"/>' +
-      '<circle cx="80" cy="113" r="6" fill="#2b2b2b"/>' +
-      '<circle cx="120" cy="113" r="6" fill="#2b2b2b"/>' +
-      '<ellipse cx="62" cy="128" rx="10" ry="6" fill="#ffb3c6" opacity="0.8"/>' +
-      '<ellipse cx="138" cy="128" rx="10" ry="6" fill="#ffb3c6" opacity="0.8"/>' +
-      '<path d="M85 132 Q100 145 115 132" stroke="#2b2b2b" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+      '<svg viewBox="0 0 200 220" width="120" height="132">' +
+      // one swirly coil body (softer + rounder than emoji-style stacked lobes)
+      '<path d="M100 205 C 55 205 40 170 55 148 C 38 136 42 105 70 92 C 54 80 60 55 85 45 C 74 38 82 18 100 12 C 118 18 126 38 115 45 C 140 55 146 80 130 92 C 158 105 162 136 145 148 C 160 170 145 205 100 205 Z" fill="#a97c50"/>' +
+      '<ellipse cx="80" cy="70" rx="18" ry="10" fill="#c79b6e" opacity="0.6"/>' +
+      // big sparkly kawaii eyes with tiny highlight dots
+      '<ellipse cx="78" cy="120" rx="16" ry="18" fill="#2b2b2b"/>' +
+      '<ellipse cx="122" cy="120" rx="16" ry="18" fill="#2b2b2b"/>' +
+      '<circle cx="83" cy="112" r="5" fill="white"/>' +
+      '<circle cx="127" cy="112" r="5" fill="white"/>' +
+      '<circle cx="73" cy="126" r="3" fill="white" opacity="0.8"/>' +
+      '<circle cx="117" cy="126" r="3" fill="white" opacity="0.8"/>' +
+      // big rosy cheeks
+      '<ellipse cx="58" cy="140" rx="12" ry="7" fill="#ffb6c1" opacity="0.85"/>' +
+      '<ellipse cx="142" cy="140" rx="12" ry="7" fill="#ffb6c1" opacity="0.85"/>' +
+      // tiny smile
+      '<path d="M88 145 Q100 156 112 145" stroke="#2b2b2b" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+      // floating sparkles
+      '<text x="18" y="42" font-size="20">✨</text>' +
+      '<text x="152" y="32" font-size="16">✨</text>' +
+      '<text x="148" y="182" font-size="14">✨</text>' +
       "</svg>";
 
     function tryToOpenTheVault() {
